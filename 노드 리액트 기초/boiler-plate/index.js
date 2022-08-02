@@ -14,7 +14,7 @@ mongoose.connect('mongodb+srv://led:led1234@boilerplate.7zof7an.mongodb.net/?ret
     .then(() => console.log('MongoDB Connect...'))
     .catch(err => console.log(err))
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => res.send('Hello World! 안녕하세요?'))
 
 app.post('/register', (req, res) => { // 클라이언트에서 가져온 정보를 데이터베이스에 넣는다.
     const user = new User(req.body) // 바디파서로 조각조각낸 정보
