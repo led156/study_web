@@ -4,13 +4,15 @@ const port = 7777
 const bodyParser = require('body-parser')
 const { User } = require("./models/User") // 유저 모델 가져오기
 
+const config = require('./config/key');
+
 // application/x-www-form-urlencoded 분석 가능
 app.use(bodyParser.urlencoded({extended: true}));
 // application/json 분석 가능
 app.use(bodyParser.json())
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://led:led1234@boilerplate.7zof7an.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect(config.mongoURI)
     .then(() => console.log('MongoDB Connect...'))
     .catch(err => console.log(err))
 
