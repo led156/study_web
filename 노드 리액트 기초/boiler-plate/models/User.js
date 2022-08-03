@@ -46,6 +46,8 @@ userSchema.pre('save', function( next ) {
                 next()
             })
         })
+    } else {
+        next()
     }
     
 }) // 몽구스를 이용. save 전에 해당 함수를 실행. 끝난 후 next로 돌아감.
