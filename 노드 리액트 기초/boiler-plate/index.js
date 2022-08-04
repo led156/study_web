@@ -4,6 +4,7 @@ const port = 7777
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const { User } = require("./models/User") // 유저 모델 가져오기
+const { auth } = require("./middleware/auth")
 
 const config = require('./config/key');
 
@@ -20,7 +21,7 @@ mongoose.connect(config.mongoURI)
 
 app.get('/', (req, res) => res.send('Hello World! 안녕하세요?'))
 
-app.post('/register', (req, res) => { // 클라이언트에서 가져온 정보를 데이터베이스에 넣는다.
+app.post('/api/users/register', (req, res) => { // 클라이언트에서 가져온 정보를 데이터베이스에 넣는다.
     const user = new User(req.body) // 바디파서로 조각조각낸 정보
 
     user.save((err, userInfo) => {   // 유저 모델에 저장. +콜백함수
@@ -31,7 +32,7 @@ app.post('/register', (req, res) => { // 클라이언트에서 가져온 정보�
     })
 })
 
-app.post('/login', (req, res) => {
+app.post('/api/users/login', (req, res) => {
     // 요청된 이메일이 데이터베이스에서 있는지 찾음.
     User.findOne({ email: req.body.email }, (err, user) => {
         if(!user) {
@@ -60,5 +61,19 @@ app.post('/login', (req, res) => {
 
     
 })
+
+app.get('/api/users/auth', auth, (req, res) => {
+    // 미들웨어가 있으므로, 여기까지 온거면, authentication이 true인것.
+    res.status(200).json({
+        _id: req.user._id,
+        isAdmin: req.user.role === 0 ? false : true,
+        isAuth: true,
+        email: req.user.name,
+        lastname: req.user.lastname,
+        role: req.user.role,
+        image: req.user.image
+    })
+})
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
