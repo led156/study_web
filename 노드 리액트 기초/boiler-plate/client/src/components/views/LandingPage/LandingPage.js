@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 // import { response } from 'express';
+import Auth from '../../../hoc/auth'
 
 function LandingPage() {
   let navigate = useNavigate()
@@ -36,4 +37,4 @@ function LandingPage() {
   )
 }
 
-export default LandingPage
+export default Auth(LandingPage, null)
