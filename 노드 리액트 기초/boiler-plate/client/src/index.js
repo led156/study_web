@@ -4,11 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider  } from 'react-redux';
-<<<<<<< HEAD
 import 'antd/dist/antd.min.css';
-=======
-import 'antd/dist/antd.css';
->>>>>>> 0c8259233da22989ba6d96f7ea78737eb0165020
 import { applyMiddleware, createStore } from 'redux';
 import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
