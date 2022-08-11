@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service // 스프링 컨테이너에 자동으로 서비스로 등록해준다.
+
 public class MemberService {
     private final MemberRepository memberRepository;
 
-    @Autowired
+
     public MemberService(MemberRepository memberRepository) {   // DI (dependency injection), 의존 관계 설정
         this.memberRepository = memberRepository;
     }
