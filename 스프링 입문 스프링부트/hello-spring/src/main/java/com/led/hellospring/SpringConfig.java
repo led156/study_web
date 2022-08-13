@@ -1,5 +1,6 @@
 package com.led.hellospring;
 
+import com.led.hellospring.aop.TimeTraceApp;
 import com.led.hellospring.repository.*;
 import com.led.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
